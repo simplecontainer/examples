@@ -1,0 +1,25 @@
+kind: containers
+containers:
+  traefik:
+    meta:
+      name: traefik
+      group: traefik
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "traefik"
+        tag: "v2.5"
+        replicas: 1
+        networks:
+          - "ghost"
+        volumes:
+          - host: "/var/run/docker.sock"
+            target: "/var/run/docker.sock"
+        ports:
+          - container: "80"
+            host: "80"
+          - container: "443"
+            host: "443"
+          - container: "8080"
+            host: "8888"
