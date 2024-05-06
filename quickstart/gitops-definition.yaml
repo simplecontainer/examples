@@ -6,10 +6,4 @@ gitops:
   spec:
     repoURL: "https://github.com/qdnqn/smr-examples"
     revision: "main"
-    directory: "/"
-    certKeyRef:
-      group: "testProject"
-      identifier: "testingGitops"
-    httpAuthRef:
-      group: "testProject"
-      identifier: "testingGitops"
+    directory: "/gitops"
