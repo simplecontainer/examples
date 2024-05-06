@@ -7,3 +7,9 @@ gitops:
     repoURL: "https://github.com/qdnqn/smr-examples"
     revision: "main"
     directory: "/gitops"
+    certKeyRef:
+      group: "testProject"
+      identifier: "testingGitops"
+    httpAuthRef:
+      group: "testProject"
+      identifier: "testingGitops"
