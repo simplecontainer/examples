@@ -1,0 +1,9 @@
+kind: gitops
+gitops:
+  meta:
+    group: testProject
+    identifier: testingGitops
+  spec:
+    repoURL: "https://github.com/qdnqn/smr-examples"
+    revision: "main"
+    directory: "/gitops"
