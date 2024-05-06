@@ -11,5 +11,5 @@ resource:
             exposedByDefault: false
         
         api:
-          insecure: true
+          insecure: false
           dashboard: true
