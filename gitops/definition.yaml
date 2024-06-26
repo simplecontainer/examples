@@ -23,3 +23,21 @@ containers:
             host: "443"
           - container: "8080"
             host: "8888"
+  nginx:
+    meta:
+      name: nginx
+      group: nginx
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "nginx"
+        tag: "1.23.3"
+        replicas: 3
+        networks:
+          - "ghost"
+        ports:
+          - container: "80"
+          - container: "443"
+        configuration:
+          username: "root"
