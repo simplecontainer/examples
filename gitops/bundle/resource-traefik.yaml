@@ -1,5 +1,5 @@
 kind: resource
-resource:
+spec:
   meta:
     group: traefik
     identifier: "*"
@@ -11,5 +11,5 @@ resource:
             exposedByDefault: false
         
         api:
-          insecure: true
+          insecure: false
           dashboard: true

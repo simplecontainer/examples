@@ -1,0 +1,29 @@
+kind: container
+meta:
+  name: logical-group
+  group: test
+spec:
+  options:
+    enabled: false
+  container:
+    image: "mysql"
+    tag: "8.0"
+    replicas: 1
+    envs:
+      - "MYSQL_ROOT_PASSWORD={{ configuration.password }}"
+    networks:
+      - "ghost"
+    ports:
+      - container: "3306"
+    readiness:
+      - name: "mysql[*]"
+        operator: DatabaseReady
+        timeout: "100s"
+        body:
+          ip: "mysql.smr-mysql-mysql-1.docker.private"
+          username: "{{ configuration.username }}"
+          password: "{{ configuration.password }}"
+          port: "3306"
+    configuration:
+      username: "root"
+      password: "{{ configuration.mysql[*].password }}"

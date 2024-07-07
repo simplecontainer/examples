@@ -1,5 +1,5 @@
 kind: certkey
-certkey:
+spec:
   meta:
     group: testProject
     identifier: testingGitops

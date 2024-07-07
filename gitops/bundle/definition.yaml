@@ -1,5 +1,8 @@
 kind: containers
-containers:
+meta:
+  name: logical-group
+  group: test
+spec:
   traefik:
     meta:
       name: traefik
