@@ -21,7 +21,7 @@ spec:
         ports:
           - container: "3306"
         readiness:
-          - name: "mysql[*]"
+          - name: "mysql"
             operator: DatabaseReady
             timeout: "20s"
             body:
@@ -32,104 +32,104 @@ spec:
         configuration:
           username: "root"
           password: "{{ configuration.mysql.*.password }}"
-#  traefik:
-#    meta:
-#      name: traefik
-#      group: traefik
-#    spec:
-#      options:
-#        enabled: false
-#      container:
-#        image: "traefik"
-#        tag: "v2.5"
-#        replicas: 1
-#        networks:
-#          - "ghost"
-#        volumes:
-#          - host: "/var/run/docker.sock"
-#            target: "/var/run/docker.sock"
-#        dependencies:
-#          - name: "mysql[*]"
-#            timeout: "100s"
-#        ports:
-#          - container: "80"
-#            host: "80"
-#          - container: "443"
-#            host: "443"
-#          - container: "8080"
-#            host: "8888"
-#        resources:
-#          - identifier: "*"
-#            key: traefik-configuration
-#            mountPoint: /etc/traefik/traefik.yml
-#  nginx:
-#    meta:
-#      name: nginx
-#      group: nginx
-#    spec:
-#      options:
-#        enabled: false
-#      container:
-#        image: "nginx"
-#        tag: "1.23.3"
-#        replicas: 1
-#        networks:
-#          - "ghost"
-#        dependencies:
-#          - name: "mysql[*]"
-#            timeout: "100s"
-#        ports:
-#          - container: "80"
-#          - container: "443"
-#        resources:
-#          - identifier: "*"
-#            key: nginx-configuration
-#            mountPoint: /etc/nginx/conf.d/default.conf
-#        configuration:
-#          username: "root"
-#  nginx-clone:
-#    meta:
-#      name: nginx-clone
-#      group: nginx
-#      labels:
-#        reconcile: "false"
-#        "traefik.enable": "true"
-#        "traefik.http.routers.nginx-clone.rule": "Host(`smr-nginx-nginx-clone.docker.private`)"
-#        "traefik.http.services.nginx-clone-service.loadbalancer.server.port": "80"
-#        constraints: "Label(`traefik`,`enabled`)"
-#    spec:
-#      options:
-#        enabled: false
-#      container:
-#        image: "nginx"
-#        tag: "1.23.3"
-#        replicas: 3
-#        networks:
-#          - "ghost"
-#        dependencies:
-#          - name: "mysql[*]"
-#            timeout: "100s"
-#        resources:
-#          - identifier: "*"
-#            key: nginx-configuration
-#            mountPoint: /etc/nginx/conf.d/default.conf
-#        configuration:
-#          username: "root"
-#  network:
-#    meta:
-#      name: network
-#      group: network
-#    spec:
-#      options:
-#        enabled: false
-#      container:
-#        image: "travelping/nettools"
-#        replicas: 1
-#        entrypoint: ["tail", "-f", "/dev/null"]
-#        networks:
-#          - "ghost"
-#        dependencies:
-#          - name: "mysql[*]"
-#            timeout: "100s"
-#        configuration:
-#          dummy: "dummy-xxx"
+  traefik:
+    meta:
+      name: traefik
+      group: traefik
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "traefik"
+        tag: "v2.5"
+        replicas: 1
+        networks:
+          - "ghost"
+        volumes:
+          - host: "/var/run/docker.sock"
+            target: "/var/run/docker.sock"
+        dependencies:
+          - name: "mysql.*"
+            timeout: "100s"
+        ports:
+          - container: "80"
+            host: "80"
+          - container: "443"
+            host: "443"
+          - container: "8080"
+            host: "8888"
+        resources:
+          - identifier: "*"
+            key: traefik-configuration
+            mountPoint: /etc/traefik/traefik.yml
+  nginx:
+    meta:
+      name: nginx
+      group: nginx
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "nginx"
+        tag: "1.23.3"
+        replicas: 1
+        networks:
+          - "ghost"
+        dependencies:
+          - name: "mysql.*"
+            timeout: "100s"
+        ports:
+          - container: "80"
+          - container: "443"
+        resources:
+          - identifier: "*"
+            key: nginx-configuration
+            mountPoint: /etc/nginx/conf.d/default.conf
+        configuration:
+          username: "root"
+  nginx-clone:
+    meta:
+      name: nginx-clone
+      group: nginx
+      labels:
+        reconcile: "false"
+        "traefik.enable": "true"
+        "traefik.http.routers.nginx-clone.rule": "Host(`nginx-nginx-clone.docker.private`)"
+        "traefik.http.services.nginx-clone-service.loadbalancer.server.port": "80"
+        constraints: "Label(`traefik`,`enabled`)"
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "nginx"
+        tag: "1.23.3"
+        replicas: 3
+        networks:
+          - "ghost"
+        dependencies:
+          - name: "mysql.*"
+            timeout: "100s"
+        resources:
+          - identifier: "*"
+            key: nginx-configuration
+            mountPoint: /etc/nginx/conf.d/default.conf
+        configuration:
+          username: "root"
+  network:
+    meta:
+      name: network
+      group: network
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "travelping/nettools"
+        replicas: 1
+        entrypoint: ["tail", "-f", "/dev/null"]
+        networks:
+          - "ghost"
+        dependencies:
+          - name: "mysql.*"
+            timeout: "100s"
+        configuration:
+          dummy: "dummy-xxx"
