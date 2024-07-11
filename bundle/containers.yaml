@@ -25,7 +25,7 @@ spec:
             operator: DatabaseReady
             timeout: "20s"
             body:
-              ip: "mysql.mysql-mysql-1.docker.private"
+              ip: "mysql.mysql-mysql-1.cluster.private"
               username: "{{ configuration.username }}"
               password: "123456789"
               port: "3306"
@@ -94,7 +94,7 @@ spec:
       labels:
         reconcile: "false"
         "traefik.enable": "true"
-        "traefik.http.routers.nginx-clone.rule": "Host(`nginx-nginx-clone.docker.private`)"
+        "traefik.http.routers.nginx-clone.rule": "Host(`nginx-nginx-clone.cluster.private`)"
         "traefik.http.services.nginx-clone-service.loadbalancer.server.port": "80"
         constraints: "Label(`traefik`,`enabled`)"
     spec:

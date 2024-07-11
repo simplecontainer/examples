@@ -20,7 +20,7 @@ spec:
         operator: DatabaseReady
         timeout: "100s"
         body:
-          ip: "mysql.smr-mysql-mysql-1.docker.private"
+          ip: "mysql.smr-mysql-mysql-1.cluster.private"
           username: "{{ configuration.username }}"
           password: "{{ configuration.password }}"
           port: "3306"
