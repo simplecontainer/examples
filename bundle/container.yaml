@@ -15,6 +15,10 @@ spec:
       - "ghost"
     ports:
       - container: "3306"
+    resources:
+      - identifier: "*"
+        key: traefik-configuration
+        mountPoint: /etc/traefik/traefik.yml
     readiness:
       - name: "mysql[*]"
         operator: DatabaseReady

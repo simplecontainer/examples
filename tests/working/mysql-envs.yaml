@@ -1,0 +1,8 @@
+kind: configuration
+spec:
+  meta:
+    group: mysql
+    name: "*"
+  spec:
+    data:
+      password: "{{ secret.mysql.mysql.password }}"

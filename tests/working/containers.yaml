@@ -1,0 +1,39 @@
+kind: containers
+meta:
+  name: logical-group
+  group: test
+spec:
+  mysql:
+    meta:
+      name: mysql
+      group: mysql
+    spec:
+      options:
+        enabled: false
+      container:
+        image: "mysql"
+        tag: "8.0"
+        replicas: 2
+        envs:
+          - "MYSQL_ROOT_PASSWORD={{ configuration.password }}"
+        networks:
+          - "ghost"
+        ports:
+          - container: "3306"
+        resources:
+          - group: "mysql"
+            name: "config"
+            key: my.cnf
+            mountPoint: /etc/my.cnf
+        readiness:
+          - name: "mysql"
+            operator: DatabaseReady
+            timeout: "60s"
+            body:
+              ip: "{{ configuration.ghost_hostname }}"
+              username: "{{ configuration.username }}"
+              password: "{{ configuration.password }}"
+              port: "3306"
+        configuration:
+          username: "root"
+          password: "{{ configuration.mysql.*.password }}"

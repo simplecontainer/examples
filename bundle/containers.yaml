@@ -13,7 +13,7 @@ spec:
       container:
         image: "mysql"
         tag: "8.0"
-        replicas: 1
+        replicas: 2
         envs:
           - "MYSQL_ROOT_PASSWORD={{ configuration.password }}"
         networks:
@@ -23,11 +23,11 @@ spec:
         readiness:
           - name: "mysql"
             operator: DatabaseReady
-            timeout: "20s"
+            timeout: "60s"
             body:
-              ip: "mysql.mysql-mysql-1.cluster.private"
+              ip: "{{ configuration.host }}"
               username: "{{ configuration.username }}"
-              password: "123456789"
+              password: "{{ configuration.password }}"
               port: "3306"
         configuration:
           username: "root"
