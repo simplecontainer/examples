@@ -2,7 +2,7 @@ kind: configuration
 spec:
   meta:
     group: mysql
-    identifier: "*"
+    name: "*"
   spec:
     data:
       password: "{{ secret.mysql.mysql.password }}"

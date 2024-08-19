@@ -2,7 +2,7 @@ kind: resource
 spec:
   meta:
     group: nginx
-    identifier: "*"
+    name: "*"
   spec:
     data:
       nginx-configuration: |
