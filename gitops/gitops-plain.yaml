@@ -2,7 +2,7 @@ kind: gitops
 spec:
   meta:
     group: test
-    identifier: smr
+    name: smr
   spec:
     repoURL: "https://github.com/simplecontainer/examples"
     revision: "main"

@@ -2,7 +2,7 @@ kind: httpauth
 spec:
   meta:
     group: testProject
-    identifier: testingGitops
+    name: testingGitops
   spec:
     username: dummy
     password: dummy
