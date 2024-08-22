@@ -25,7 +25,7 @@ spec:
             operator: DatabaseReady
             timeout: "60s"
             body:
-              ip: "{{ configuration.host }}"
+              ip: "{{ configuration.ghost_hostname }}"
               username: "{{ configuration.username }}"
               password: "{{ configuration.password }}"
               port: "3306"
