@@ -59,7 +59,7 @@ spec:
           - container: "8080"
             host: "8888"
         resources:
-          - identifier: "*"
+          - name: "*"
             key: traefik-configuration
             mountPoint: /etc/traefik/traefik.yml
   nginx:
@@ -82,7 +82,7 @@ spec:
           - container: "80"
           - container: "443"
         resources:
-          - identifier: "*"
+          - name: "*"
             key: nginx-configuration
             mountPoint: /etc/nginx/conf.d/default.conf
         configuration:
@@ -110,7 +110,7 @@ spec:
           - name: "mysql.*"
             timeout: "100s"
         resources:
-          - identifier: "*"
+          - name: "*"
             key: nginx-configuration
             mountPoint: /etc/nginx/conf.d/default.conf
         configuration:
