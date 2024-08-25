@@ -55,7 +55,7 @@ spec:
             target: "/var/run/docker.sock"
         dependencies:
           - group: "mysql"
-            name: "mysql"
+            name: "*"
             timeout: "30s"
         ports:
           - container: "80"
@@ -84,7 +84,7 @@ spec:
           - "ghost"
         dependencies:
           - group: "mysql"
-            name: "mysql"
+            name: "*"
             timeout: "30s"
         ports:
           - container: "80"
