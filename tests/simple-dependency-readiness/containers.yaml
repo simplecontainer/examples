@@ -54,7 +54,7 @@ spec:
           - host: "/var/run/docker.sock"
             target: "/var/run/docker.sock"
         dependencies:
-          - name: "mysql.*"
+          - name: "mysql.mysql"
             timeout: "30s"
         ports:
           - container: "80"
@@ -82,7 +82,7 @@ spec:
         networks:
           - "ghost"
         dependencies:
-          - name: "mysql.*"
+          - name: "mysql.mysql"
             timeout: "30s"
         ports:
           - container: "80"
