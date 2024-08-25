@@ -1,0 +1,9 @@
+kind: gitops
+spec:
+  meta:
+    group: test
+    name: smr
+  spec:
+    repoURL: "https://github.com/simplecontainer/examples"
+    revision: "main"
+    directoryPath: "/gitops/bundle"
