@@ -83,6 +83,7 @@ spec:
           - container: "443"
         resources:
           - name: "*"
+            group: "traefik"
             key: nginx-configuration
             mountPoint: /etc/nginx/conf.d/default.conf
         configuration:
@@ -111,6 +112,7 @@ spec:
             timeout: "100s"
         resources:
           - name: "*"
+            group: "traefik"
             key: nginx-configuration
             mountPoint: /etc/nginx/conf.d/default.conf
         configuration:
