@@ -6,4 +6,4 @@ spec:
   spec:
     repoURL: "https://github.com/simplecontainer/examples"
     revision: "main"
-    directoryPath: "/gitops/bundle"
+    directoryPath: "/test/gitops-plain/bundle"
