@@ -20,6 +20,11 @@ spec:
           - "ghost"
         ports:
           - container: "3306"
+        resources:
+          - group: "mysql"
+            name: "config"
+            key: my.cnf
+            mountPoint: /etc/my.cnf
         readiness:
           - name: "mysql"
             operator: DatabaseReady
@@ -50,7 +55,7 @@ spec:
             target: "/var/run/docker.sock"
         dependencies:
           - name: "mysql.*"
-            timeout: "100s"
+            timeout: "30s"
         ports:
           - container: "80"
             host: "80"
@@ -78,7 +83,7 @@ spec:
           - "ghost"
         dependencies:
           - name: "mysql.*"
-            timeout: "100s"
+            timeout: "30s"
         ports:
           - container: "80"
           - container: "443"
@@ -89,50 +94,3 @@ spec:
             mountPoint: /etc/nginx/conf.d/default.conf
         configuration:
           username: "root"
-  nginx-clone:
-    meta:
-      name: nginx-clone
-      group: nginx
-      labels:
-        reconcile: "false"
-        "traefik.enable": "true"
-        "traefik.http.routers.nginx-clone.rule": "Host(`nginx-nginx-clone.cluster.private`)"
-        "traefik.http.services.nginx-clone-service.loadbalancer.server.port": "80"
-        constraints: "Label(`traefik`,`enabled`)"
-    spec:
-      options:
-        enabled: false
-      container:
-        image: "nginx"
-        tag: "1.23.3"
-        replicas: 3
-        networks:
-          - "ghost"
-        dependencies:
-          - name: "mysql.*"
-            timeout: "100s"
-        resources:
-          - name: "*"
-            group: "nginx"
-            key: nginx-configuration
-            mountPoint: /etc/nginx/conf.d/default.conf
-        configuration:
-          username: "root"
-  network:
-    meta:
-      name: network
-      group: network
-    spec:
-      options:
-        enabled: false
-      container:
-        image: "travelping/nettools"
-        replicas: 1
-        entrypoint: ["tail", "-f", "/dev/null"]
-        networks:
-          - "ghost"
-        dependencies:
-          - name: "mysql.*"
-            timeout: "100s"
-        configuration:
-          dummy: "dummy-xxx"
