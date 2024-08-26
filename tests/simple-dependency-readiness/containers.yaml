@@ -26,7 +26,7 @@ spec:
             key: my.cnf
             mountPoint: /etc/my.cnf
         readiness:
-          - name: "mysql"
+          - name: "database"
             operator: DatabaseReady
             timeout: "60s"
             body:
