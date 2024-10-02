@@ -1,15 +1,14 @@
 kind: resource
+meta:
+  group: traefik
+  name: "*"
 spec:
-  meta:
-    group: traefik
-    name: "*"
-  spec:
-    data:
-      traefik-configuration: |
-        providers:
-          docker:
-            exposedByDefault: false
-        
-        api:
-          insecure: true
-          dashboard: true
+  data:
+    traefik-configuration: |
+      providers:
+        docker:
+          exposedByDefault: false
+      
+      api:
+        insecure: true
+        dashboard: true

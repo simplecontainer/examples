@@ -1,12 +1,11 @@
 kind: resource
+meta:
+  group: nginx
+  name: "*"
 spec:
-  meta:
-    group: nginx
-    name: "*"
-  spec:
-    data:
-      nginx-configuration: |
-        server {
-          listen   80;
-          listen   [::]:80;
-        }
+  data:
+    nginx-configuration: |
+      server {
+        listen   80;
+        listen   [::]:80;
+      }
