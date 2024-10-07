@@ -1,0 +1,10 @@
+kind: gitops
+meta:
+  group: test
+  name: smr
+spec:
+  repoURL: "https://github.com/simplecontainer/examples"
+  revision: "main"
+  directoryPath: "/test/gitops-plain/bundle"
+  API: "https://localhost:1443"
+  username: "adnan"
