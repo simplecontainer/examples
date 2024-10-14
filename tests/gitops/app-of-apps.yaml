@@ -1,0 +1,8 @@
+kind: gitops
+meta:
+  group: examples
+  name: app-of-apps
+spec:
+  repoURL: "https://github.com/simplecontainer/examples"
+  revision: "main"
+  directoryPath: "/gitops/apps"

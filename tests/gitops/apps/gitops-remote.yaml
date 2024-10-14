@@ -1,7 +1,7 @@
 kind: gitops
 meta:
-  group: test
-  name: smr
+  group: examples
+  name: plain-remote
 spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"
