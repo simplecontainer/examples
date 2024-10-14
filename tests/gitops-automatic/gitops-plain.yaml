@@ -1,8 +1,9 @@
 kind: gitops
 meta:
-  group: test
-  name: smr
+  group: examples
+  name: plain-auto
 spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"
-  directoryPath: "/test/gitops-plain/bundle"
+  automaticSync: true
+  directoryPath: "/test/simple"

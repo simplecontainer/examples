@@ -5,6 +5,6 @@ meta:
 spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"
-  directoryPath: "/test/gitops-plain/bundle"
+  directoryPath: "/test/simple"
   API: "https://localhost:1443"
-  username: "adnan"
+  username: "root"
