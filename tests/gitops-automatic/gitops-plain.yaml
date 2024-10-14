@@ -6,4 +6,4 @@ spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"
   automaticSync: true
-  directoryPath: "/tests/simple"
+  directoryPath: "/tests/minimal"

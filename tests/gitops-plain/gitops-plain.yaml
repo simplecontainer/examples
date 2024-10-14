@@ -5,4 +5,4 @@ meta:
 spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"
-  directoryPath: "/tests/simple"
+  directoryPath: "/tests/minimal"
