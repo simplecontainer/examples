@@ -1,8 +1,0 @@
-kind: httpauth
-spec:
-  meta:
-    group: testProject
-    name: testingGitops
-  spec:
-    username: dummy
-    password: dummy

@@ -15,9 +15,10 @@ spec:
         tag: "8.0"
         replicas: 2
         envs:
-          - "MYSQL_ROOT_PASSWORD={{ configuration.password }}"
+          - "MYSQL_ROOT_PASSWORD={{ container.password }}"
         networks:
-          - "ghost"
+          - name: qdnqn
+            group: qdnqn
         ports:
           - container: "3306"
         resources:
@@ -30,10 +31,11 @@ spec:
             operator: DatabaseReady
             timeout: "60s"
             body:
-              ip: "{{ configuration.ghost_hostname }}"
+              ip: "{{ container.mysql.host }}"
               username: "{{ configuration.username }}"
               password: "{{ configuration.password }}"
               port: "3306"
         configuration:
+          mysql.host: "{{ network.mysql.mysql-mysql-1.dns }}"
           username: "root"
           password: "{{ configuration.mysql.*.password }}"

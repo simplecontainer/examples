@@ -15,9 +15,11 @@ spec:
         tag: "v2.5"
         replicas: 1
         networks:
-          - "ghost"
+          - name: qdnqn
+            group: qdnqn
         volumes:
-          - host: "/var/run/docker.sock"
+          - type: bind
+            host: "/var/run/docker.sock"
             target: "/var/run/docker.sock"
         ports:
           - container: "80"
@@ -38,7 +40,8 @@ spec:
         tag: "1.23.3"
         replicas: 3
         networks:
-          - "ghost"
+          - name: qdnqn
+            group: qdnqn
         ports:
           - container: "80"
           - container: "443"
