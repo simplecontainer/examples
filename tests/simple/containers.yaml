@@ -8,8 +8,6 @@ spec:
       name: mysql
       group: mysql
     spec:
-      options:
-        enabled: false
       container:
         image: "mysql"
         tag: "8.0"
