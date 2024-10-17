@@ -9,10 +9,10 @@ spec:
       group: examples
       labels:
         "traefik.enable": "true"
-        "traefik.http.routers.qdnqn-ghost.rule": "Host(`example.com`)"
-        "traefik.http.routers.qdnqn-ghost.entrypoints": "websecure"
-        "traefik.http.routers.qdnqn-ghost.tls.certresolver": "myresolver"
-        "traefik.http.services.qdnqn-ghost-service.loadbalancer.server.port": "80"
+        "traefik.http.routers.nginx.rule": "Host(`example.com`)"
+        "traefik.http.routers.nginx.entrypoints": "websecure"
+        "traefik.http.routers.nginx.tls.certresolver": "myresolver"
+        "traefik.http.services.nginx-service.loadbalancer.server.port": "8080"
     spec:
       container:
         image: "nginx"
