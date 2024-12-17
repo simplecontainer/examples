@@ -15,8 +15,8 @@ spec:
         envs:
           - "MYSQL_ROOT_PASSWORD={{ container.password }}"
         networks:
-          - name: qdnqn
-            group: qdnqn
+          - name: example
+            group: smr
         ports:
           - container: "3306"
         resources:
@@ -26,14 +26,8 @@ spec:
             mountPoint: /etc/my.cnf
         readiness:
           - name: "mysql"
-            operator: DatabaseReady
             timeout: "60s"
-            body:
-              ip: "{{ container.mysql.host }}"
-              username: "{{ configuration.username }}"
-              password: "{{ configuration.password }}"
-              port: "3306"
+            command: [ "mysqladmin", "ping", "-h", "localhost", "-p{{ configuration.password }}" ]
         configuration:
-          mysql.host: "{{ network.mysql.mysql-mysql-1.dns }}"
           username: "root"
           password: "{{ configuration.mysql.*.password }}"

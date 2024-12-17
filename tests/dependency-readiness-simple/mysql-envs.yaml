@@ -1,7 +1,7 @@
 kind: configuration
 meta:
   group: mysql
-  name: "*"
+  name: envs
 spec:
   data:
     password: "{{ secret.mysql.mysql.password }}"

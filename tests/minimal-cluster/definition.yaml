@@ -13,4 +13,4 @@ spec:
       spread: uniform
     networks:
       - name: cluster
-        group: smr
+        group: internal

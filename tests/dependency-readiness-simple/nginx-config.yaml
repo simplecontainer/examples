@@ -1,7 +1,7 @@
 kind: resource
 meta:
   group: nginx
-  name: "*"
+  name: config
 spec:
   data:
     nginx-configuration: |

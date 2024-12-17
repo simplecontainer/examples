@@ -1,7 +1,7 @@
 kind: resource
 meta:
   group: traefik
-  name: "*"
+  name: config
 spec:
   data:
     traefik-configuration: |

@@ -1,7 +1,7 @@
 kind: network
 meta:
-  name: qdnqn
-  group: qdnqn
+  name: example
+  group: smr
 spec:
   driver: bridge
   IPV4AddressPool: 10.10.0.0/16

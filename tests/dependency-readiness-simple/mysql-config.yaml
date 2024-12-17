@@ -1,7 +1,7 @@
 kind: resource
 meta:
   group: mysql
-  name: "config"
+  name: config
 spec:
   data:
     my.cnf: |
