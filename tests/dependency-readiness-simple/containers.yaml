@@ -12,8 +12,10 @@ spec:
         image: "mysql"
         tag: "8.0"
         replicas: 2
+        spread:
+          spread: uniform
         envs:
-          - "MYSQL_ROOT_PASSWORD={{ configuration.password }}"
+          - "MYSQL_ROOT_PASSWORD={{ container.password }}"
         ports:
           - container: "3306"
         resources:
@@ -21,13 +23,18 @@ spec:
             name: config
             key: my.cnf
             mountPoint: /etc/my.cnf
+          - group: mysql
+            name: config
+            key: secret.config.file
+            mountPoint: /etc/secret.cnf
         readiness:
           - name: "mysql"
             timeout: "60s"
-            command: ["mysqladmin", "ping", "-h", "localhost", "-p{{ configuration.password }}"]
+            command: ["mysqladmin", "ping", "-h", "localhost", "-p{{ container.password }}"]
         configuration:
           username: "root"
           password: "{{ secret.mysql.mysql.password }}"
+          fromConfig: "{{ configuration.mysql.envs.password }}"
   traefik:
     meta:
       name: traefik

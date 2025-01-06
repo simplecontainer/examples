@@ -7,3 +7,15 @@ spec:
     my.cnf: |
       [mysqld]
       bind-address=0.0.0.0
+    secret.config.file: |
+      if container has spec like this:
+      
+        configuration:
+          password: 12345
+          secret: {{ secret.mysql.mysql.password }}
+      
+      then resource can parse those like this:
+        This works -> {{ container.password }} # Fetched by the container and reused
+        This works -> {{ container.fromConfig }} # Fetched by the container and reused
+        This works -> {{ configuration.mysql.envs.password }} # Fetched directly as object
+        This works -> {{ secret.mysql.mysql.password }} # Fetched directly as object
