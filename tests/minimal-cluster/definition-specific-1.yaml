@@ -10,7 +10,9 @@ spec:
     entrypoint: ["sleep"]
     args: ["3600"]
     spread:
-      spread: uniform
+      spread: specific
+      agents:
+        - 1
     networks:
       - name: cluster
         group: internal

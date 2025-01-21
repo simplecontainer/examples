@@ -6,7 +6,7 @@ spec:
   container:
     image: busybox
     tag: latest
-    replicas: 2
+    replicas: 3
     entrypoint: ["sleep"]
     args: ["3600"]
     spread:
