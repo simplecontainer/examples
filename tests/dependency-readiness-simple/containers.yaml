@@ -70,13 +70,15 @@ spec:
     meta:
       name: nginx
       group: nginx
+      labels:
+        test: testing2345
     spec:
       options:
         enabled: false
       container:
         image: "nginx"
         tag: "1.23.3"
-        replicas: 1
+        replicas: 2
         dependencies:
           - group: "mysql"
             name: "*"

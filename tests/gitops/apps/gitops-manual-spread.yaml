@@ -1,0 +1,8 @@
+kind: gitops
+meta:
+  group: examples
+  name: plain-manual
+spec:
+  repoURL: "https://github.com/simplecontainer/examples"
+  revision: "main"
+  directoryPath: "/tests/minimal-cluster-demo"
