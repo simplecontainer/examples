@@ -1,3 +1,4 @@
+prefix: simplecontainer.io/v1
 kind: resource
 meta:
   group: mysql
@@ -10,12 +11,15 @@ spec:
     secret.config.file: |
       if container has spec like this:
       
-        configuration:
-          password: 12345
-          secret: {{ secret.mysql.mysql.password }}
+      configuration:
+        password: 12345
+        secret: 12345678
       
       then resource can parse those like this:
-        This works -> {{ container.password }} # Fetched by the container and reused
-        This works -> {{ container.fromConfig }} # Fetched by the container and reused
-        This works -> {{ configuration.mysql.envs.password }} # Fetched directly as object
-        This works -> {{ secret.mysql.mysql.password }} # Fetched directly as object
+        This works -> (( lookup "simplecontainer.io/v1/kind/configuration/mysql/envs:password" )) # Fetched from store
+        This works -> (( lookup "simplecontainer.io/v1/kind/secret/mysql/password:password" )) # Fetched from store
+        This works -> (( lookup "configuration/mysql/envs:password" )) # Fetched from store
+        This works -> (( lookup "secret/mysql/password:password" )) # Fetched from store
+        
+        This works -> (( .password )) # Parsed only when attached on the container
+        This works -> (( .secret )) # Parsed only when attached on the container

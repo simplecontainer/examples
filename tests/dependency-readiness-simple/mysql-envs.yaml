@@ -1,7 +1,8 @@
+prefix: simplecontainer.io/v1
 kind: configuration
 meta:
   group: mysql
   name: envs
 spec:
   data:
-    password: "{{ secret.mysql.mysql.password }}"
+    password: (( printf "test" ))

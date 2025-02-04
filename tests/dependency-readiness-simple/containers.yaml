@@ -1,9 +1,11 @@
+prefix: simplecontainer.io/v1
 kind: containers
 meta:
   name: logical-group
   group: test
 spec:
   mysql:
+    prefix: simplecontainer.io/v1
     meta:
       name: mysql
       group: mysql
@@ -15,7 +17,7 @@ spec:
         spread:
           spread: uniform
         envs:
-          - "MYSQL_ROOT_PASSWORD={{ container.password }}"
+          - MYSQL_ROOT_PASSWORD=(( .password ))
         ports:
           - container: "3306"
         resources:
@@ -30,12 +32,13 @@ spec:
         readiness:
           - name: "mysql"
             timeout: "60s"
-            command: ["mysqladmin", "ping", "-h", "localhost", "-p{{ container.password }}"]
+            command: ["mysqladmin", "ping", "-h", "localhost", "-p(( .password ))"]
         configuration:
           username: "root"
-          password: "{{ secret.mysql.mysql.password }}"
-          fromConfig: "{{ configuration.mysql.envs.password }}"
+          password: (( lookup "secret/mysql/password:password" ))
+          secret: "secret"
   traefik:
+    prefix: simplecontainer.io/v1
     meta:
       name: traefik
       group: traefik
@@ -51,7 +54,8 @@ spec:
             hostPath: "/var/run/docker.sock"
             mountPoint: "/var/run/docker.sock"
         dependencies:
-          - group: "mysql"
+          - prefix: "simplecontainer.io/v1"
+            group: "mysql"
             name: "*"
             timeout: "30s"
         ports:
@@ -67,6 +71,7 @@ spec:
             key: traefik-configuration
             mountPoint: /etc/traefik/traefik.yml
   nginx:
+    prefix: simplecontainer.io/v1
     meta:
       name: nginx
       group: nginx
@@ -80,7 +85,8 @@ spec:
         tag: "1.23.3"
         replicas: 2
         dependencies:
-          - group: "mysql"
+          - prefix: "simplecontainer.io/v1"
+            group: "mysql"
             name: "*"
             timeout: "30s"
         ports:

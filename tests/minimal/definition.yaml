@@ -1,3 +1,4 @@
+prefix: simplecontainer.io/v1
 kind: container
 meta:
   group: example
