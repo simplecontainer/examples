@@ -1,0 +1,37 @@
+kind: containers
+prefix: simplecontainer.io/v1
+meta:
+  name: mysql
+  group: mysql
+  label:
+    label: label
+    label2: label2
+spec:
+  image: "mysql"
+  tag: "8.0"
+  replicas: 1
+  spread:
+    spread: uniform
+  envs:
+    - MYSQL_ROOT_PASSWORD=(( .password ))
+    - CONTAINER_NAME=(( .name ))
+  ports:
+    - container: "3306"
+  resources:
+    - group: mysql
+      name: config
+      key: my.cnf
+      mountPoint: /etc/my.cnf
+    - group: mysql
+      name: config
+      key: secret.config.file
+      mountPoint: /etc/secret.cnf
+  readiness:
+    - name: "mysql"
+      timeout: "60s"
+      command: ["mysqladmin", "ping", "-h", "localhost", "-p(( .password ))"]
+  configuration:
+    username: "root"
+    password: (( lookup "secret/mysql/password:password" | base64decode ))
+    testing: (( lookup "runtime/container/configuration:name" ))
+    secret: "secret"

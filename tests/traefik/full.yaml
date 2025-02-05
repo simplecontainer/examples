@@ -1,0 +1,23 @@
+---
+prefix: traefik.io/v1
+kind: custom
+meta:
+  name: routerName
+  group: myCustomGroup
+spec:
+  rule: Host(`simplecontainer.io`)
+  entrypoints:
+    - web
+    - websecure
+  middlewares:
+    - prefix
+  service: servicName
+  tls:
+    tls: true
+    certresolver: myresolver
+    domains:
+      - sans:
+          - simplecontainer.io
+    options: foobar
+    priority: 42
+---

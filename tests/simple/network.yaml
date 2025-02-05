@@ -1,8 +1,0 @@
-prefix: simplecontainer.io/v1
-kind: network
-meta:
-  name: example
-  group: smr
-spec:
-  driver: bridge
-  IPV4AddressPool: 10.10.0.0/16

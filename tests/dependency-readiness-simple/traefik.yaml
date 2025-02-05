@@ -1,0 +1,32 @@
+prefix: simplecontainer.io/v1
+kind: containers
+meta:
+  name: traefik
+  group: traefik
+  labels:
+    test: "testing"
+spec:
+  image: "traefik"
+  tag: "v2.5"
+  replicas: 1
+  volumes:
+    - type: "bind"
+      hostPath: "/var/run/docker.sock"
+      mountPoint: "/var/run/docker.sock"
+  dependencies:
+    - prefix: "simplecontainer.io/v1"
+      group: "mysql"
+      name: "*"
+      timeout: "30s"
+  ports:
+    - container: "80"
+      host: "80"
+    - container: "443"
+      host: "443"
+    - container: "8080"
+      host: "8888"
+  resources:
+    - group: traefik
+      name: config
+      key: traefik-configuration
+      mountPoint: /etc/traefik/traefik.yml

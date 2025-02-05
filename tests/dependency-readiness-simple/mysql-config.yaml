@@ -17,7 +17,7 @@ spec:
       
       then resource can parse those like this:
         This works -> (( lookup "simplecontainer.io/v1/kind/configuration/mysql/envs:password" )) # Fetched from store
-        This works -> (( lookup "simplecontainer.io/v1/kind/secret/mysql/password:password" )) # Fetched from store
+        This works -> (( lookup "simplecontainer.io/v1/kind/secret/mysql/password:password" | base64decode )) # Fetched from store
         This works -> (( lookup "configuration/mysql/envs:password" )) # Fetched from store
         This works -> (( lookup "secret/mysql/password:password" )) # Fetched from store
         

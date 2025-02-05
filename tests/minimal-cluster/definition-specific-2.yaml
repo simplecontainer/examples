@@ -1,19 +1,18 @@
 prefix: simplecontainer.io/v1
-kind: container
+kind: containers
 meta:
   group: example
   name: busybox
 spec:
-  container:
-    image: busybox
-    tag: latest
-    replicas: 2
-    entrypoint: ["sleep"]
-    args: ["3600"]
-    spread:
-      spread: specific
-      agents:
-        - 2
-    networks:
-      - name: cluster
-        group: internal
+  image: busybox
+  tag: latest
+  replicas: 2
+  entrypoint: ["sleep"]
+  args: ["3600"]
+  spread:
+    spread: specific
+    agents:
+      - 2
+  networks:
+    - name: cluster
+      group: internal

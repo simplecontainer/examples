@@ -1,8 +1,0 @@
-prefix: simplecontainer.io/v1
-kind: configuration
-meta:
-  group: mysql
-  name: "*"
-spec:
-  data:
-    password: "{{ secret.mysql.mysql.password }}"

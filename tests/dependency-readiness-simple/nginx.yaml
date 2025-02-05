@@ -1,0 +1,26 @@
+kind: containers
+prefix: simplecontainer.io/v1
+meta:
+  name: nginx
+  group: nginx
+  labels:
+    test: testing2345
+spec:
+  image: "nginx"
+  tag: "1.23.3"
+  replicas: 2
+  dependencies:
+    - prefix: "simplecontainer.io/v1"
+      group: "mysql"
+      name: "*"
+      timeout: "30s"
+  ports:
+    - container: "80"
+    - container: "443"
+  resources:
+    - group: nginx
+      name: config
+      key: nginx-configuration
+      mountPoint: /etc/nginx/conf.d/default.conf
+  configuration:
+    username: "root"
