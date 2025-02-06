@@ -1,0 +1,22 @@
+prefix: simplecontainer.io/v1
+kind: containers
+meta:
+  name: nginx
+  group: examples
+spec:
+  meta:
+    name: nginx
+    group: examples
+    labels:
+      "traefik.enable": "true"
+      "traefik.http.routers.nginx.rule": "Host(`example.com`)"
+      "traefik.http.routers.nginx.entrypoints": "websecure"
+      "traefik.http.routers.nginx.tls.certresolver": "myresolver"
+      "traefik.http.services.nginx-service.loadbalancer.server.port": "8080"
+  spec:
+    container:
+      image: "nginx"
+      tag: "latest"
+      replicas: 1
+      ports:
+        - container: "8080"
