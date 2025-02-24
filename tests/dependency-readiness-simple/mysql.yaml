@@ -14,9 +14,16 @@ spec:
     spread: uniform
   envs:
     - MYSQL_ROOT_PASSWORD=(( .password ))
-    - CONTAINER_NAME=(( .name ))
+    - CONTAINER_NAME=(( .testing ))
   ports:
     - container: "3306"
+  volumes:
+    - type: bind
+      hostPath: /tmp
+      mountPoint: /tmp
+  configurations:
+    - group: mysql
+      name: config
   resources:
     - group: mysql
       name: config
@@ -34,4 +41,5 @@ spec:
     username: "root"
     password: (( lookup "secret/mysql/password:password" | base64decode ))
     testing: (( lookup "runtime/container/configuration:name" ))
+    testing2: (( lookup "runtime/container/configuration:name" ))
     secret: "secret"

@@ -1,0 +1,8 @@
+prefix: simplecontainer.io/v1
+kind: configuration
+meta:
+  group: mysql
+  name: config
+spec:
+  data:
+    fromConfigResource: "testing"

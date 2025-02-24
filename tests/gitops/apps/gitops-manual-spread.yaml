@@ -2,7 +2,7 @@ prefix: simplecontainer.io/v1
 kind: gitops
 meta:
   group: examples
-  name: plain-manual
+  name: plain-manual-spread
 spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"

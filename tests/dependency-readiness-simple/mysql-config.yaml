@@ -10,7 +10,7 @@ spec:
       bind-address=0.0.0.0
     secret.config.file: |
       if container has spec like this:
-      
+            
       configuration:
         password: 12345
         secret: 12345678
