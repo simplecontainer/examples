@@ -6,4 +6,4 @@ meta:
 spec:
   repoURL: "https://github.com/simplecontainer/examples"
   revision: "main"
-  directoryPath: "tests/gitops/apps"
+  directoryPath: "tests/gitops-apps"
