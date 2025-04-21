@@ -5,7 +5,7 @@ meta:
   name: busybox
 spec:
   image: busybox
-  tag: latest
+  tag: 1.36.1
   replicas: 2
   entrypoint: ["sleep"]
   args: ["3600"]
