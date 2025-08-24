@@ -13,11 +13,6 @@ spec:
     - type: "bind"
       hostPath: "/var/run/docker.sock"
       mountPoint: "/var/run/docker.sock"
-  dependencies:
-    - prefix: "simplecontainer.io/v1"
-      group: "mysql"
-      name: "*"
-      timeout: "30s"
   ports:
     - container: "80"
       host: "80"

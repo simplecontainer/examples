@@ -1,0 +1,13 @@
+prefix: simplecontainer.io/v1
+kind: containers
+meta:
+  name: traefik-provider
+  group: traefik
+  labels:
+    test: "testing"
+spec:
+  image: "traefik-provider"
+  tag: "latest"
+  replicas: 1
+  ports:
+    - container: "7431"

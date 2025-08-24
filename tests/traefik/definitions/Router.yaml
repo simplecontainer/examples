@@ -2,22 +2,20 @@
 prefix: traefik.io/v1
 kind: custom
 meta:
-  name: routerName
-  group: myCustomGroup
+  name: dynamic
+  group: traefik
 spec:
-  rule: Host(`simplecontainer.io`)
-  entrypoints:
-    - web
-    - websecure
-  middlewares:
-    - prefix
-  service: servicName
-  tls:
-    tls: true
-    certresolver: myresolver
-    domains:
-      - sans:
-          - simplecontainer.io
-    options: foobar
-    priority: 42
----
+  traefik:
+    enable: "true"
+    http:
+      routers:
+        my-router:
+          rule: "Host(`example.local`)"
+          entrypoints:
+          - "web"
+          service: "my-service"
+      services:
+        my-service:
+          loadBalancer:
+            servers:
+              - url: http://bridge.nginx.nginx.private

@@ -7,13 +7,16 @@ spec:
   data:
     traefik-configuration: |
       providers:
-        docker:
-          exposedByDefault: false
+        http:
+          endpoint: "http://bridge.traefik-traefik-provider-1.private"
+          pollInterval: "1s"
       
       entryPoints:
         web:
-          address: ":80"     
-      
+          address: ":80"
+        websecure:
+          address: ":443"
+        
       api:
         insecure: true
         dashboard: true
