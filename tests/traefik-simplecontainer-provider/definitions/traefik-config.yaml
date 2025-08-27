@@ -8,7 +8,7 @@ spec:
     traefik-configuration: |
       providers:
         http:
-          endpoint: "http://bridge.traefik-traefik-provider-1.private"
+          endpoint: "http://bridge.traefik.traefik-provider.private"
           pollInterval: "1s"
       
       entryPoints:
