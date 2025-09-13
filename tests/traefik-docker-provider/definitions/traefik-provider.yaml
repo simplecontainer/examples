@@ -3,11 +3,9 @@ kind: containers
 meta:
   name: traefik-provider
   group: traefik
-  labels:
-    test: "testing"
 spec:
-  image: "traefik-provider"
+  image: "quay.io/simplecontainer/traefik-provider"
   tag: "latest"
   replicas: 1
   ports:
-    - container: "7431"
+    - container: "80"

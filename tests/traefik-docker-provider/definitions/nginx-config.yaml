@@ -1,0 +1,12 @@
+prefix: simplecontainer.io/v1
+kind: resource
+meta:
+  group: nginx
+  name: config
+spec:
+  data:
+    nginx-configuration: |
+      server {
+        listen   80;
+        listen   [::]:80;
+      }

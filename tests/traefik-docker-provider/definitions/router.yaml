@@ -1,0 +1,21 @@
+---
+prefix: traefik.io/v1
+kind: custom
+meta:
+  name: dynamic
+  group: traefik
+spec:
+  traefik:
+    enable: "true"
+    http:
+      routers:
+        my-router:
+          rule: "Host(`example.local`)"
+          entrypoints:
+          - "web"
+          service: "my-service"
+      services:
+        my-service:
+          loadBalancer:
+            servers:
+              - url: http://bridge.nginx.nginx.private

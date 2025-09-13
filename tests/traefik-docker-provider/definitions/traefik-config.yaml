@@ -1,0 +1,22 @@
+prefix: simplecontainer.io/v1
+kind: resource
+meta:
+  group: traefik
+  name: config
+spec:
+  data:
+    traefik-configuration: |
+      providers:
+        http:
+          endpoint: "http://bridge.traefik.traefik-provider.private"
+          pollInterval: "1s"
+      
+      entryPoints:
+        web:
+          address: ":80"
+        websecure:
+          address: ":443"
+        
+      api:
+        insecure: true
+        dashboard: true
